@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const Stripe = require('stripe')
+const connectDB = require("./config/db");
 
 const app = express();
 app.use(cors());
@@ -45,12 +46,15 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 
-//mongodb connection
-mongoose.set("strictQuery", false);
-mongoose
-  .connect(process.env.DATA_BASE_URL)
-  .then(() => console.log("Connect to Databse"))
-  .catch((err) => console.log(err));
+
+// 2nd time use Connect to DB
+connectDB();
+
+//mongodb 1st time use connection
+// mongoose.set("strictQuery", false);
+// const conn =   mongoose.connect(process.env.DATA_BASE_URL)
+//   .then(() => console.log("Connect to Databse",conn.connection.host))
+//   .catch((err) => console.log(err));
 
 //schema
 const userSchema = mongoose.Schema({
