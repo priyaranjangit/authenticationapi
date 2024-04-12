@@ -11,7 +11,7 @@ app.use(express.json({ limit: "10mb" }));
 
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
+// const databaseURL = process.env.DATA_BASE_URL;
 const PORT = process.env.PORT || 8080;
 const options = {
   swaggerDefinition: {
@@ -48,7 +48,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 //mongodb connection
 mongoose.set("strictQuery", false);
 mongoose
-  .connect("mongodb+srv://priyaranjanved:xXHq03MpDvgugWMv@cluster0.hvkypjw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(process.env.DATA_BASE_URL)
   .then(() => console.log("Connect to Databse"))
   .catch((err) => console.log(err));
 
