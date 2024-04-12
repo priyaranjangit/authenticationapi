@@ -48,7 +48,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 //mongodb connection
 mongoose.set("strictQuery", false);
 mongoose
-  .connect("mongodb+srv://priyaranjanved:xXHq03MpDvgugWMv@cluster0.hvkypjw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .connect("mongodb+srv://priyaranjanved:xXHq03MpDvgugWMv@cluster0.hvkypjw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("Connect to Databse"))
   .catch((err) => console.log(err));
 
